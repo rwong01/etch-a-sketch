@@ -1,21 +1,34 @@
+function randomColor() {
+    const r = Math.floor(Math.random() * 256); 
+    const g = Math.floor(Math.random() * 256); 
+    const b = Math.floor(Math.random() * 256); 
+    return [r, g, b];
+}
+
 function createGrid(size = 4) {
+    const grid = document.createElement("div");
     const row = document.createElement("div");
-    row.className = "row";
     const square = document.createElement("div");
+    grid.id = "grid";
+    row.className = "row";
     square.className = "square";
+    const squareSize = 100 / size;
+    row.style.cssText = `height: ${squareSize}%; width: 100%`;
+    square.style.cssText = `width: ${squareSize}%; height: 100%`;
+    document.body.appendChild(grid);
     for (let i = 0; i < size; i++){
         const clone = square.cloneNode();
         row.appendChild(clone);
     } 
     for (let i = 0; i < size; i++){
         const clone = row.cloneNode(true);
-        document.body.appendChild(clone);
+        grid.appendChild(clone);
     }
-
     const squares = document.getElementsByClassName("square");
     for (let i=0; i< squares.length; i++){
         squares[i].addEventListener("mouseover", () => {
-            squares[i].style.backgroundColor = '#76649c';
+            const [r, g, b] = randomColor();
+            squares[i].style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
         });
         
         squares[i].addEventListener("mouseout", () => {
@@ -33,10 +46,8 @@ function getNewGridSize () {
         size = parseInt(prompt("Invalid input, please try again. Enter # of squares per side for new grid (Min = 1, Max = 100): "));
     }
     console.log(size);
-    const rows = document.getElementsByClassName("row");
-    while(rows[0]) {
-        rows[0].parentNode.removeChild(rows[0]);
-    }
+    const grid = document.getElementById("grid");
+    document.body.removeChild(grid);
     createGrid(size);
 }
 
