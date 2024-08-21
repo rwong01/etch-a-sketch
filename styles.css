@@ -1,0 +1,22 @@
+.square {
+    width: 250px;
+    height: 250px;
+    border: 1px solid #2f195f;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.center {
+    text-align: center;
+}
+
+#input {
+    background-color: black;
+    color: white;
+    font-size: 16px;
+    margin: 10px;
+}
