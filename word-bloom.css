@@ -1,0 +1,422 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background-color: #0f1a0f;
+    color: #c5d4b8;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+/* Screens */
+.screen {
+    display: none;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.6s ease;
+}
+
+.screen.active {
+    display: flex;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.container {
+    text-align: center;
+    max-width: 480px;
+    padding: 32px 20px;
+    width: 100%;
+}
+
+/* Welcome */
+.welcome-flower {
+    font-size: 3.5rem;
+    margin-bottom: 12px;
+    animation: sway 3s ease-in-out infinite;
+    color: #a8c686;
+}
+
+@keyframes sway {
+    0%, 100% { transform: rotate(-3deg); }
+    50% { transform: rotate(3deg); }
+}
+
+.title {
+    font-size: 2.4rem;
+    font-weight: 400;
+    color: #a8c686;
+    margin-bottom: 6px;
+    letter-spacing: 1px;
+}
+
+.subtitle {
+    font-size: 1rem;
+    color: #6b7f5a;
+    margin-bottom: 36px;
+    font-style: italic;
+}
+
+.instructions {
+    background: rgba(168, 198, 134, 0.05);
+    border: 1px solid rgba(168, 198, 134, 0.1);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 32px;
+}
+
+.instructions p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #8a9e78;
+}
+
+/* Buttons */
+.btn {
+    font-family: inherit;
+    font-size: 1rem;
+    padding: 12px 32px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    letter-spacing: 0.4px;
+}
+
+.btn-primary {
+    background: #a8c686;
+    color: #0f1a0f;
+}
+
+.btn-primary:hover {
+    background: #bdd49e;
+}
+
+.btn-secondary {
+    background: rgba(168, 198, 134, 0.1);
+    color: #a8c686;
+    border: 1px solid rgba(168, 198, 134, 0.2);
+}
+
+.btn-secondary:hover {
+    background: rgba(168, 198, 134, 0.18);
+}
+
+.btn-hint {
+    background: rgba(210, 180, 120, 0.12);
+    color: #d2b478;
+    border: 1px solid rgba(210, 180, 120, 0.2);
+    font-size: 0.85rem;
+    padding: 6px 16px;
+}
+
+.btn-hint:hover {
+    background: rgba(210, 180, 120, 0.2);
+}
+
+.back-link {
+    display: inline-block;
+    margin-top: 18px;
+    color: #3d4a35;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.3s;
+}
+
+.back-link:hover {
+    color: #a8c686;
+}
+
+/* Game Header */
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+}
+
+.garden-count {
+    font-size: 0.9rem;
+    color: #6b7f5a;
+}
+
+.garden-icon {
+    color: #a8c686;
+    margin-right: 4px;
+}
+
+/* Word Slots */
+.word-slots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 36px;
+    min-height: 52px;
+}
+
+.slot {
+    width: 44px;
+    height: 50px;
+    border: 2px solid rgba(168, 198, 134, 0.15);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    color: #c5d4b8;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+    background: rgba(168, 198, 134, 0.03);
+}
+
+.slot.filled {
+    border-color: rgba(168, 198, 134, 0.4);
+    background: rgba(168, 198, 134, 0.08);
+}
+
+.slot.correct {
+    border-color: #a8c686;
+    background: rgba(168, 198, 134, 0.2);
+    animation: slotPop 0.3s ease;
+}
+
+.slot.wrong {
+    border-color: rgba(200, 100, 100, 0.4);
+    animation: shake 0.4s ease;
+}
+
+.slot.hint-slot {
+    border-color: rgba(210, 180, 120, 0.5);
+    color: #d2b478;
+    background: rgba(210, 180, 120, 0.08);
+}
+
+@keyframes slotPop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-6px); }
+    75% { transform: translateX(6px); }
+}
+
+/* Petal Ring */
+.petal-ring-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 32px;
+}
+
+.petal-ring {
+    position: relative;
+    width: 260px;
+    height: 260px;
+}
+
+.petal {
+    position: absolute;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: rgba(168, 198, 134, 0.08);
+    border: 2px solid rgba(168, 198, 134, 0.2);
+    color: #c5d4b8;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.petal:hover {
+    background: rgba(168, 198, 134, 0.18);
+    border-color: rgba(168, 198, 134, 0.4);
+    transform: scale(1.08);
+}
+
+.petal:active {
+    transform: scale(0.95);
+}
+
+.petal.selected {
+    background: #a8c686;
+    color: #0f1a0f;
+    border-color: #a8c686;
+    transform: scale(0.9);
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* Game Actions */
+.game-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+/* Bloom Overlay */
+.bloom-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 26, 15, 0.85);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 100;
+    animation: fadeIn 0.3s ease;
+}
+
+.bloom-overlay.active {
+    display: flex;
+}
+
+.bloom-flower {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin-bottom: 24px;
+}
+
+.bloom-petals {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    animation: bloomSpin 2s ease-out;
+}
+
+@keyframes bloomSpin {
+    from { transform: scale(0.3) rotate(-60deg); opacity: 0; }
+    to { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+.bloom-petal {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+}
+
+.bloom-center {
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #d2b478;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: bloomCenter 0.6s ease 0.3s both;
+}
+
+@keyframes bloomCenter {
+    from { transform: translate(-50%, -50%) scale(0); }
+    to { transform: translate(-50%, -50%) scale(1); }
+}
+
+.bloom-word {
+    font-size: 1.6rem;
+    color: #a8c686;
+    font-style: italic;
+    animation: fadeIn 0.5s ease 0.4s both;
+}
+
+/* Garden Screen */
+.garden-title {
+    font-size: 1.8rem;
+    color: #a8c686;
+    font-weight: 400;
+    margin-bottom: 24px;
+}
+
+.garden-flowers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 24px;
+    min-height: 60px;
+}
+
+.garden-flower {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    animation: growIn 0.4s ease both;
+}
+
+.garden-flower-icon {
+    font-size: 2rem;
+}
+
+.garden-flower-word {
+    font-size: 0.7rem;
+    color: #6b7f5a;
+    text-transform: lowercase;
+}
+
+@keyframes growIn {
+    from { transform: scale(0) translateY(10px); opacity: 0; }
+    to { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.garden-message {
+    color: #4d5c42;
+    font-size: 0.9rem;
+    font-style: italic;
+    margin-bottom: 28px;
+}
+
+.garden-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+/* Ambient glow */
+body::before {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        ellipse at 50% 80%,
+        rgba(168, 198, 134, 0.04) 0%,
+        transparent 60%
+    );
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+    .title { font-size: 1.9rem; }
+    .petal-ring { width: 220px; height: 220px; }
+    .petal { width: 48px; height: 48px; font-size: 1.3rem; }
+    .slot { width: 38px; height: 44px; font-size: 1.2rem; }
+    .garden-actions { flex-direction: column; }
+}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Bloom</title>
+    <link rel="stylesheet" href="word-bloom.css">
+</head>
+<body>
+    <!-- Welcome Screen -->
+    <div id="welcome-screen" class="screen active">
+        <div class="container">
+            <div class="welcome-flower">&#10047;</div>
+            <h1 class="title">Word Bloom</h1>
+            <p class="subtitle">Unscramble letters to grow your garden</p>
+            <div class="instructions">
+                <p>Letters are arranged like petals around a flower. Tap them in order to spell the hidden word. No timers, no pressure &mdash; just gentle puzzles.</p>
+            </div>
+            <button id="start-btn" class="btn btn-primary">Plant a Seed</button>
+            <a href="index.html" class="back-link">&larr; Back to Menu</a>
+        </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="game-screen" class="screen">
+        <div class="container">
+            <div class="game-header">
+                <div class="garden-count">
+                    <span class="garden-icon">&#10047;</span>
+                    <span id="score">0</span> bloomed
+                </div>
+                <div class="hint-area">
+                    <button id="hint-btn" class="btn btn-hint">Hint</button>
+                </div>
+            </div>
+
+            <div id="word-slots" class="word-slots"></div>
+
+            <div class="petal-ring-wrapper">
+                <div id="petal-ring" class="petal-ring"></div>
+            </div>
+
+            <div class="game-actions">
+                <button id="clear-btn" class="btn btn-secondary">Clear</button>
+                <button id="shuffle-btn" class="btn btn-secondary">Shuffle</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bloom Animation Overlay -->
+    <div id="bloom-overlay" class="bloom-overlay">
+        <div class="bloom-flower">
+            <div class="bloom-petals" id="bloom-petals"></div>
+            <div class="bloom-center"></div>
+        </div>
+        <p id="bloom-word" class="bloom-word"></p>
+    </div>
+
+    <!-- Garden Screen -->
+    <div id="garden-screen" class="screen">
+        <div class="container">
+            <h2 class="garden-title">Your Garden</h2>
+            <div id="garden-flowers" class="garden-flowers"></div>
+            <p class="garden-message">Every word blooms into something beautiful.</p>
+            <div class="garden-actions">
+                <button id="keep-going-btn" class="btn btn-primary">Keep Growing</button>
+                <button id="menu-btn" class="btn btn-secondary">Menu</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="word-bloom.js"></script>
+</body>
+</html>
