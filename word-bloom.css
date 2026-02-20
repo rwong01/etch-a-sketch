@@ -122,6 +122,43 @@ body {
     background: rgba(210, 180, 120, 0.2);
 }
 
+/* Difficulty Selector */
+.difficulty-selector {
+    margin-bottom: 24px;
+}
+
+.difficulty-label {
+    font-size: 0.85rem;
+    color: #6b7f5a;
+    margin-bottom: 10px;
+    font-style: italic;
+}
+
+.difficulty-options {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.btn-difficulty {
+    padding: 8px 18px;
+    background: rgba(168, 198, 134, 0.08);
+    color: #8a9e78;
+    border: 1px solid rgba(168, 198, 134, 0.2);
+    font-size: 0.95rem;
+}
+
+.btn-difficulty:hover {
+    background: rgba(168, 198, 134, 0.18);
+    color: #a8c686;
+}
+
+.btn-difficulty.active {
+    background: rgba(168, 198, 134, 0.2);
+    color: #a8c686;
+    border-color: rgba(168, 198, 134, 0.5);
+}
+
 .back-link {
     display: inline-block;
     margin-top: 18px;
