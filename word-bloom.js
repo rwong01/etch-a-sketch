@@ -232,6 +232,16 @@ function clearSelection() {
     renderSlots();
 }
 
+function backspaceSelection() {
+    if (game.checking) return;
+    if (game.selected.length > 0) {
+        const lastIdx = game.selected.pop();
+        const petals = document.querySelectorAll('.petal');
+        petals[lastIdx].classList.remove('selected');
+        renderSlots();
+    }
+}
+
 function shufflePetals() {
     // Only shuffle non-hint letters
     game.scrambled = scrambleWord(game.currentWord.slice(game.hintRevealed));
@@ -339,6 +349,7 @@ document.querySelectorAll('.btn-difficulty').forEach(btn => {
 
 // Event listeners
 $('start-btn').addEventListener('click', startGame);
+$('backspace-btn').addEventListener('click', backspaceSelection);
 $('clear-btn').addEventListener('click', clearSelection);
 $('shuffle-btn').addEventListener('click', shufflePetals);
 $('hint-btn').addEventListener('click', revealHint);
@@ -358,12 +369,7 @@ document.addEventListener('keydown', (e) => {
 
     if (e.key === 'Backspace') {
         e.preventDefault();
-        if (game.selected.length > 0) {
-            const lastIdx = game.selected.pop();
-            const petals = document.querySelectorAll('.petal');
-            petals[lastIdx].classList.remove('selected');
-            renderSlots();
-        }
+        backspaceSelection();
         return;
     }
 
