@@ -3,15 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="scripts.js" defer></script>
+    <title>Game Menu</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-    <div class="center">
-        <button id="input">New Grid</button>
-        <br>
-        <a href="cognitive-shuffle.html" id="shuffle-link">Cognitive Shuffle</a>
+<body class="menu-page">
+    <div class="menu">
+        <h1 class="menu-title">Games</h1>
+        <div class="menu-grid">
+            <a href="etch-a-sketch.html" class="menu-card">
+                <div class="card-icon">&#9998;</div>
+                <h2 class="card-title">Etch-a-Sketch</h2>
+                <p class="card-desc">Draw with colors on a grid by hovering over squares</p>
+            </a>
+            <a href="cognitive-shuffle.html" class="menu-card">
+                <div class="card-icon">&#9790;</div>
+                <h2 class="card-title">Cognitive Shuffle</h2>
+                <p class="card-desc">A calming word game to help you drift off to sleep</p>
+            </a>
+        </div>
     </div>
 </body>
 </html>

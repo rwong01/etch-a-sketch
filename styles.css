@@ -1,3 +1,4 @@
+/* Etch-a-Sketch game styles */
 #grid {
     width: 960px;
     height: 960px;
@@ -33,9 +34,86 @@
     color: black;
 }
 
-#shuffle-link {
-    display: inline-block;
-    margin-top: 10px;
+.nav-link {
+    display: block;
+    margin-top: 4px;
     color: #2f195f;
     font-size: 14px;
+    text-decoration: none;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+/* Game menu styles */
+.menu-page {
+    background-color: #0d1117;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+.menu {
+    text-align: center;
+    padding: 40px 24px;
+    width: 100%;
+    max-width: 640px;
+}
+
+.menu-title {
+    font-size: 2.4rem;
+    font-weight: 400;
+    color: #c9d1d9;
+    margin-bottom: 40px;
+    letter-spacing: 2px;
+}
+
+.menu-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.menu-card {
+    display: block;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 32px 24px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+}
+
+.menu-card:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(139, 159, 202, 0.3);
+    transform: translateY(-2px);
+}
+
+.card-icon {
+    font-size: 2.4rem;
+    margin-bottom: 12px;
+    opacity: 0.8;
+}
+
+.card-title {
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: #8b9fca;
+    margin-bottom: 8px;
+}
+
+.card-desc {
+    font-size: 0.9rem;
+    color: #6a7a8a;
+    line-height: 1.5;
+}
+
+@media (max-width: 600px) {
+    .menu-title { font-size: 1.8rem; }
+    .menu-card { padding: 24px 20px; }
 }
