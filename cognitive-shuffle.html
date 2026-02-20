@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cognitive Shuffle</title>
+    <link rel="stylesheet" href="cognitive-shuffle.css">
+</head>
+<body>
+    <!-- Welcome Screen -->
+    <div id="welcome-screen" class="screen active">
+        <div class="container">
+            <h1 class="title">Cognitive Shuffle</h1>
+            <p class="subtitle">A gentle technique to help you fall asleep</p>
+            <div class="instructions">
+                <p>The Cognitive Shuffle works by occupying your mind with random, unrelated images &mdash; making it easier to drift off to sleep.</p>
+                <div class="steps">
+                    <div class="step">
+                        <span class="step-number">1</span>
+                        <span>A seed word appears</span>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">2</span>
+                        <span>For each letter, a random word is shown</span>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">3</span>
+                        <span>Visualize each word calmly, then move on</span>
+                    </div>
+                </div>
+            </div>
+            <div class="settings">
+                <label for="pace-select">Pace:</label>
+                <select id="pace-select">
+                    <option value="0">Manual (tap to advance)</option>
+                    <option value="5000">Slow (5 seconds)</option>
+                    <option value="8000" selected>Relaxed (8 seconds)</option>
+                    <option value="12000">Dreamy (12 seconds)</option>
+                </select>
+            </div>
+            <button id="start-btn" class="btn btn-primary">Begin</button>
+            <a href="index.html" class="back-link">&larr; Back to Etch-a-Sketch</a>
+        </div>
+    </div>
+
+    <!-- Seed Word Screen -->
+    <div id="seed-screen" class="screen">
+        <div class="container">
+            <p class="label">Your seed word is</p>
+            <h2 id="seed-word" class="seed-word"></h2>
+            <p class="hint">Take a moment to read it, then we'll go letter by letter.</p>
+            <button id="seed-continue-btn" class="btn btn-primary">Continue</button>
+        </div>
+    </div>
+
+    <!-- Shuffle Screen -->
+    <div id="shuffle-screen" class="screen">
+        <div class="container">
+            <div class="progress-bar">
+                <div id="progress-fill" class="progress-fill"></div>
+            </div>
+            <div class="letter-track" id="letter-track"></div>
+            <div class="shuffle-content">
+                <p class="current-letter-label">Letter</p>
+                <span id="current-letter" class="current-letter"></span>
+                <div id="word-display" class="word-display">
+                    <span id="shuffle-word" class="shuffle-word"></span>
+                </div>
+                <p class="visualize-hint">Close your eyes and picture this...</p>
+            </div>
+            <button id="next-btn" class="btn btn-secondary">Next</button>
+        </div>
+    </div>
+
+    <!-- Complete Screen -->
+    <div id="complete-screen" class="screen">
+        <div class="container">
+            <div class="moon">&#9790;</div>
+            <h2 class="complete-title">Sweet dreams</h2>
+            <p class="complete-message">You've completed the shuffle. Let your mind wander and drift off to sleep.</p>
+            <div class="complete-actions">
+                <button id="again-btn" class="btn btn-primary">Shuffle Again</button>
+                <button id="home-btn" class="btn btn-secondary">Home</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="cognitive-shuffle.js"></script>
+</body>
+</html>

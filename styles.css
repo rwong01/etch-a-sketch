@@ -32,3 +32,10 @@
     background-color: #b8b8b8;
     color: black;
 }
+
+#shuffle-link {
+    display: inline-block;
+    margin-top: 10px;
+    color: #2f195f;
+    font-size: 14px;
+}
