@@ -213,10 +213,6 @@ function clearSelection() {
 
 function shufflePetals() {
     // Only shuffle non-hint letters
-    const hintLetters = game.currentWord.slice(0, game.hintRevealed).split('');
-    const remainingLetters = game.currentWord.slice(game.hintRevealed).split('');
-    game.scrambled = scrambleWord(remainingLetters.join('')).split('') || remainingLetters;
-    // Fix: scramble properly
     game.scrambled = scrambleWord(game.currentWord.slice(game.hintRevealed));
     clearSelection();
     positionPetals();
