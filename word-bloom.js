@@ -45,7 +45,9 @@ const game = {
     score: 0,
     solvedWords: [],
     hintRevealed: 0,
-    difficulty: 4
+    difficulty: 4,
+    startDifficulty: 4,
+    checking: false
 };
 
 // DOM references
@@ -76,11 +78,12 @@ function pickRandom(arr) {
     return arr[Math.floor(Math.random() * arr.length)];
 }
 
-// Determine difficulty based on score
+// Determine difficulty based on score and starting difficulty
 function getDifficulty() {
-    if (game.score < 3) return 4;
-    if (game.score < 7) return 5;
-    if (game.score < 12) return 6;
+    const base = game.startDifficulty;
+    if (game.score < 3) return base;
+    if (game.score < 7) return Math.min(base + 1, 7);
+    if (game.score < 12) return Math.min(base + 2, 7);
     return 7;
 }
 
@@ -171,28 +174,45 @@ function selectPetal(index) {
     }
 }
 
-function checkWord() {
+async function checkWord() {
+    if (game.checking) return;
+    game.checking = true;
+
     const attempt = game.currentWord.slice(0, game.hintRevealed) +
         game.selected.map(i => game.scrambled[i]).join('');
 
-    if (attempt === game.currentWord) {
-        wordSolved();
+    if (attempt === game.currentWord || await isValidWord(attempt)) {
+        wordSolved(attempt);
     } else {
         wordWrong();
     }
+    game.checking = false;
 }
 
-function wordSolved() {
+async function isValidWord(word) {
+    if (isValidWord.cache.has(word)) return isValidWord.cache.get(word);
+    try {
+        const res = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${encodeURIComponent(word)}`);
+        const valid = res.ok;
+        isValidWord.cache.set(word, valid);
+        return valid;
+    } catch {
+        return false;
+    }
+}
+isValidWord.cache = new Map();
+
+function wordSolved(word) {
     // Animate slots
     const slots = document.querySelectorAll('.slot');
     slots.forEach(s => s.classList.add('correct'));
 
     game.score++;
-    game.solvedWords.push(game.currentWord);
+    game.solvedWords.push(word);
     $('score').textContent = game.score;
 
     // Show bloom animation
-    setTimeout(() => showBloom(), 400);
+    setTimeout(() => showBloom(word), 400);
 }
 
 function wordWrong() {
@@ -205,6 +225,7 @@ function wordWrong() {
 }
 
 function clearSelection() {
+    if (game.checking) return;
     game.selected = [];
     const petals = document.querySelectorAll('.petal');
     petals.forEach(p => p.classList.remove('selected'));
@@ -231,7 +252,7 @@ function revealHint() {
 }
 
 // Bloom animation
-function showBloom() {
+function showBloom(word) {
     const overlay = $('bloom-overlay');
     const petalsEl = $('bloom-petals');
     const wordEl = $('bloom-word');
@@ -256,7 +277,7 @@ function showBloom() {
         petalsEl.appendChild(petal);
     }
 
-    wordEl.textContent = game.currentWord;
+    wordEl.textContent = word;
     overlay.classList.add('active');
 
     setTimeout(() => {
@@ -302,9 +323,19 @@ function nextWord() {
 function startGame() {
     game.score = 0;
     game.solvedWords = [];
+    game.checking = false;
     $('score').textContent = '0';
     nextWord();
 }
+
+// Difficulty selector
+document.querySelectorAll('.btn-difficulty').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.btn-difficulty').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        game.startDifficulty = parseInt(btn.dataset.length, 10);
+    });
+});
 
 // Event listeners
 $('start-btn').addEventListener('click', startGame);
